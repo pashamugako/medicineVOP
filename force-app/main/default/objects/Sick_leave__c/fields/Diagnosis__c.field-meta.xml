@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Diagnosis__c</fullName>
+    <externalId>false</externalId>
+    <label>Диагноз</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>B34.2</fullName>
+                <default>false</default>
+                <label>B34.2</label>
+            </value>
+            <value>
+                <fullName>B97.2</fullName>
+                <default>false</default>
+                <label>B97.2</label>
+            </value>
+            <value>
+                <fullName>J06.9</fullName>
+                <default>false</default>
+                <label>J06.9</label>
+            </value>
+            <value>
+                <fullName>J18</fullName>
+                <default>false</default>
+                <label>J18</label>
+            </value>
+            <value>
+                <fullName>Z20.8</fullName>
+                <default>false</default>
+                <label>Z20.8</label>
+            </value>
+            <value>
+                <fullName>Z20.8;J06.9</fullName>
+                <default>false</default>
+                <label>Z20.8; J06.9</label>
+            </value>
+            <value>
+                <fullName>Z20.8;J18</fullName>
+                <default>false</default>
+                <label>Z20.8; J18</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

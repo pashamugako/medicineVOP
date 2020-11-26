@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Express_Compact_Layouts</fullName>
+    <fields>Name</fields>
+    <fields>Date_Express_Test__c</fields>
+    <fields>Result__c</fields>
+    <fields>Number_Test__c</fields>
+    <fields>Sick_leave__c</fields>
+    <label>Express_Compact Layouts</label>
+</CompactLayout>

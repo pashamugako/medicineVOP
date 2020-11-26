@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable" controller="ReportCreateComponentController">
+    <aura:attribute name="monthValue" type="Integer" access="private" />
+    <aura:attribute name="yearValue" type="Integer" access="private" />
+    <aura:attribute name="resultReport" type="String" access="private" />
+    <aura:attribute name="isLoading" type="Boolean" access="private" default="false" />
+    <aura:attribute name="headerResult" type="String" access="private" default="Результат" />
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+
+    <div class="slds-is-relative">
+        <aura:if isTrue="{!v.isLoading}">
+            <lightning:spinner variant="brand" size="medium" />
+        </aura:if>
+
+        <div class="slds-m-around_xx-small slds-theme_shade">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="3" padding="around-small">
+                    <div class="slds-box slds-m-around_xx-small slds-theme_default">
+                        <div class="slds-text-heading_medium slds-align_absolute-center">Заполнение формы</div>
+
+                        <div class="slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_x-small">
+                            <lightning:select aura:id="monthId" label="Месяц" value="{! v.monthValue }">
+                                <option value="">Выберите месяц...</option>
+                                <option value="1">Январь</option>
+                                <option value="2">Февраль</option>
+                                <option value="3">Март</option>
+                                <option value="4">Апрель</option>
+                                <option value="5">Май</option>
+                                <option value="6">Июнь</option>
+                                <option value="7">Июль</option>
+                                <option value="8">Август</option>
+                                <option value="9">Сентябрь</option>
+                                <option value="10">Октябрь</option>
+                                <option value="11">Ноябрь</option>
+                                <option value="12">Декабрь</option>
+                            </lightning:select>
+
+                            <lightning:select aura:id="yearId" label="Год" value="{! v.yearValue }">
+                                <option value="">Выберите год...</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                            </lightning:select>
+                        </div>
+
+                        <div class="slds-m-around_x-small button-class">
+                            <lightning:button type="submit" label="Отчет по Covid+" variant="brand"
+                                onclick="{! c.createCovid }" />
+                        </div>
+
+                        <div class="slds-m-around_x-small button-class">
+                            <lightning:button type="submit" label="Отчет по контактам" variant="brand"
+                                onclick="{! c.createContact }" />
+                        </div>
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="9" padding="around-small">
+                    <div class="slds-box slds-m-around_xx-small slds-theme_default">
+                        <div class="slds-text-heading_medium slds-align_absolute-center">{!v.headerResult}</div>
+
+                        <lightning:textarea label="" value="{! v.resultReport }" class="text-area-class"
+                            placeholder="Здесь будут отображены сформированные данные..." readonly="true" />
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CT_Compact_Layouts</fullName>
+    <fields>Name</fields>
+    <fields>Datetime_CT__c</fields>
+    <fields>Pneumonia__c</fields>
+    <fields>Is_Request_Ready__c</fields>
+    <fields>Sick_leave__c</fields>
+    <label>CT Compact Layouts</label>
+</CompactLayout>

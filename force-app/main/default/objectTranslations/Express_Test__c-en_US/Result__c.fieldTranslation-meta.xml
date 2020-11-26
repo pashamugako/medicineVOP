@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Результат --></label>
+    <name>Result__c</name>
+    <picklistValues>
+        <masterLabel>IgM+; IgG+</masterLabel>
+        <translation><!-- IgM+; IgG+ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IgM+; IgG-</masterLabel>
+        <translation><!-- IgM+; IgG- --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IgM-; IgG+</masterLabel>
+        <translation><!-- IgM-; IgG+ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IgM-; IgG-</masterLabel>
+        <translation><!-- IgM-; IgG- --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

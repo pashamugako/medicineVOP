@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SickLeaveCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>Start_Sick_Leave__c</fields>
+    <fields>Status__c</fields>
+    <fields>Diagnosis__c</fields>
+    <fields>Date_Smear__c</fields>
+    <fields>Date_Express_Test__c</fields>
+    <fields>Date_Contact__c</fields>
+    <label>SickLeaveCompactLayout</label>
+</CompactLayout>

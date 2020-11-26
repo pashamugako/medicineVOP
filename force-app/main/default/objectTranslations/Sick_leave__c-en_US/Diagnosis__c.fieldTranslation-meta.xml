@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Диагноз --></label>
+    <name>Diagnosis__c</name>
+    <picklistValues>
+        <masterLabel>B34.2</masterLabel>
+        <translation><!-- B34.2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B97.2</masterLabel>
+        <translation><!-- B97.2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>J06.9</masterLabel>
+        <translation><!-- J06.9 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>J18</masterLabel>
+        <translation><!-- J18 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Z20.8</masterLabel>
+        <translation><!-- Z20.8 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Z20.8; J06.9</masterLabel>
+        <translation><!-- Z20.8; J06.9 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Z20.8; J18</masterLabel>
+        <translation><!-- Z20.8; J18 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

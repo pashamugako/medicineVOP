@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Статус --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Активен</masterLabel>
+        <translation><!-- Активен --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Закрыт</masterLabel>
+        <translation><!-- Закрыт --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

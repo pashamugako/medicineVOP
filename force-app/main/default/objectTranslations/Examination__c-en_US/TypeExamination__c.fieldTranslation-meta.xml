@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Вид осмотра --></label>
+    <name>TypeExamination__c</name>
+    <picklistValues>
+        <masterLabel>Вызов</masterLabel>
+        <translation><!-- Вызов --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Звонок</masterLabel>
+        <translation><!-- Звонок --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Планируется</masterLabel>
+        <translation><!-- Планируется --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Приём</masterLabel>
+        <translation><!-- Приём --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
