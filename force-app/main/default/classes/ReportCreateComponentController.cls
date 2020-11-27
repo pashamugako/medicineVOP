@@ -17,9 +17,9 @@ public with sharing class ReportCreateComponentController {
 
                 if (isdateExaminationRight) {
                     CovidBuilder covid = new CovidBuilder()
-                        .setName(sickLeave.Name)
-                        .setSmear(new BuilderTestAnalysis(examinationDate, sickLeave.Smear_Covid__r, 'Smear_Covid__c'))
-                        .setExpressTest(new BuilderTestAnalysis(examinationDate, sickLeave.Express_Test__r, 'Express_Test__c'))
+                        .setName((String) sickLeave.getSObject('Patient__r').get('Name'))
+                        .setSmear(new BuilderTestAnalysis(sickLeave.Date_Smear__c, sickLeave.Smear_Covid__r, 'Smear_Covid__c'))
+                        .setExpressTest(new BuilderTestAnalysis(sickLeave.Date_Express_Test__c, sickLeave.Express_Test__r, 'Express_Test__c'))
                         .setDateLetter(sickLeave.Date_Letter__c)
                         .setLetterText(sickLeave.Letter_Text__c)
                         .setEmergencyNotification(sickLeave.Emergency_Notification__c)
@@ -62,7 +62,7 @@ public with sharing class ReportCreateComponentController {
                 //to do - maybe exception, if sickLeave.Date_Contact__c == null ?
                 if (contactDate == null || examinationDate >= contactDate) {
                     CovidBuilder covid = new CovidBuilder()
-                        .setName(sickLeave.Name)
+                        .setName((String) sickLeave.getSObject('Patient__r').get('Name'))
                         .setPatient(new BuilderPatient(
                             (String) sickLeave.getSObject('Patient__r').get('Second_Name__c'), 
                             (String) sickLeave.getSObject('Patient__r').get('First_Name__c'), 
@@ -102,8 +102,8 @@ public with sharing class ReportCreateComponentController {
         String expressTestIgMPlus = '%' + SickLeaveUtils.EXPRESS_TEST_IGM_PLUS + '%';
 
         List<Sick_leave__c> sickLeaves = 
-            [SELECT Name,Date_Smear__c,Date_Express_Test__c,Date_Letter__c,Letter_Text__c,Diagnosis__c,Emergency_Notification__c,
-                Patient__r.Second_Name__c,Patient__r.First_Name__c,Patient__r.Patronymic__c,
+            [SELECT Date_Smear__c,Date_Express_Test__c,Date_Letter__c,Letter_Text__c,Diagnosis__c,Emergency_Notification__c,
+                Patient__r.Second_Name__c,Patient__r.First_Name__c,Patient__r.Patronymic__c,Patient__r.Name,
                 (
                     SELECT Date_Examination__c 
                     FROM Examination__r 
@@ -163,7 +163,7 @@ public with sharing class ReportCreateComponentController {
 
         List<Sick_leave__c> sickLeaves = 
             [SELECT Name,Date_Contact__c,Diagnosis__c,
-                Patient__r.Second_Name__c,Patient__r.First_Name__c,Patient__r.Patronymic__c,
+                Patient__r.Second_Name__c,Patient__r.First_Name__c,Patient__r.Patronymic__c,Patient__r.Name,
                 (
                     SELECT Date_Examination__c 
                     FROM Examination__r 

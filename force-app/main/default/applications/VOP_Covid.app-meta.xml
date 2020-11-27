@@ -18,6 +18,7 @@
     <tabs>Express_Test__c</tabs>
     <tabs>CT_scan__c</tabs>
     <tabs>Reports</tabs>
+    <tabs>standard-File</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>UtilityBar</utilityBar>
 </CustomApplication>
