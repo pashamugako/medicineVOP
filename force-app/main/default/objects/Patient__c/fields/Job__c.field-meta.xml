@@ -3,7 +3,7 @@
     <fullName>Job__c</fullName>
     <externalId>false</externalId>
     <label>Место работы</label>
-    <length>255</length>
+    <length>100</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
