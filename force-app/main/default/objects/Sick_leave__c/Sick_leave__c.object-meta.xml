@@ -158,7 +158,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Больничный</label>
     <nameField>
         <label>Номер больничного</label>
@@ -173,6 +173,6 @@
         <searchResultsAdditionalFields>Date_Express_Test__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Date_Contact__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

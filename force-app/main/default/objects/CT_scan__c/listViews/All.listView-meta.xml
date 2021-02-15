@@ -4,7 +4,7 @@
     <columns>NAME</columns>
     <columns>Datetime_CT__c</columns>
     <columns>Pneumonia__c</columns>
-    <columns>Is_Request_Ready__c</columns>
+    <columns>Is_Ready_Notice_Date_CT_Scan__c</columns>
     <columns>Sick_leave__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>

@@ -4,37 +4,29 @@ public with sharing class SickLeaveUtils {
     public static final String CT_POSITIVE = 'Yes';
     public static final String CT_NEGATIVE = 'No';
     public static final String EXPRESS_TEST_IGM_PLUS = 'IgM+';
+    public static final String STATUS_ACTIVE = 'Active';
     public static final String FIELD_APINAME_DATE_SWEAR = 'Date_Smear__c';
     public static final String FIELD_APINAME_DATE_EXPRESS_TEST = 'Date_Express_Test__c';
+    public static final String FIELD_APINAME_DATETIME_SC_SCAN = 'Datetime_CT__c';
     public static final String EXCEPTION_SICK_LEAVE_NOT_EXIST = 'Sick leave element does not exist!';
     public static final String DIAGNOSIS_COVID = 'B34.2';
     public static final String DIAGNOSIS_PNEUMONIA = 'J18';
     public static final String DIAGNOSIS_COVID_PNEUMONIA = 'B97.2';
     public static final String DIAGNOSIS_COLD = 'J06.9';
     public static final String DIAGNOSIS_CONTACT = 'Z20.8';
+    public static final Integer ISOLATION_DAYS_COVID = 13;
+    public static final Integer ISOLATION_DAYS_CONTACT = 9;
+    public static final Integer VKK_DAYS = 29;
+    public static final String FIELD_APINAME_END_ISOLATION = 'End_Isolation__c';
 
     public static void updateSickLeaveFromSmear(Smear_Covid__c smear) {
         Sick_leave__c sickLeave = getSickLeaveRecord(smear.Sick_leave__c);
-
-        Boolean isDateSmearUpdated = setDateSickLeave(
-            sickLeave, smear.Date_Smear__c, FIELD_APINAME_DATE_SWEAR);
-        Boolean isDiagnosisUpdated = addDiagnosisCovid(sickLeave);
-
-        if (isDateSmearUpdated || isDiagnosisUpdated) {
-            update sickLeave;
-        }
+        handleCovidPositive(sickLeave, smear.Date_Smear__c, FIELD_APINAME_DATE_SWEAR);
     }
 
     public static void updateSickLeaveFromExpressTest(Express_Test__c expressTest) {
         Sick_leave__c sickLeave = getSickLeaveRecord(expressTest.Sick_leave__c);
-
-        Boolean isDateExpressTestUpdated = setDateSickLeave(
-            sickLeave, expressTest.Date_Express_Test__c, FIELD_APINAME_DATE_EXPRESS_TEST);
-        Boolean isDiagnosisUpdated = addDiagnosisCovid(sickLeave);
-
-        if (isDateExpressTestUpdated || isDiagnosisUpdated) {
-            update sickLeave;
-        }
+        handleCovidPositive(sickLeave, expressTest.Date_Express_Test__c, FIELD_APINAME_DATE_EXPRESS_TEST);
     }
 
     public static void addPneumoniaToDiagnosis(Id sickLeaveId) {
@@ -58,7 +50,46 @@ public with sharing class SickLeaveUtils {
         }
     }
 
-    private static Boolean addDiagnosisCovid(Sick_leave__c sickLeave){
+    public static void setEndIsolationDayContact(Sick_leave__c sickLeave) {
+        Boolean isDiagnosisContact = isDiagnosisContact(sickLeave);
+        Boolean isDiagnosisCovid = isDiagnosisCovid(sickLeave);
+
+        Date dateContact = sickLeave.Date_Contact__c;
+        Date dateEndIsolationNew;
+        if (dateContact != null) {
+            if (isDiagnosisContact) {
+                dateEndIsolationNew = dateContact.addDays(ISOLATION_DAYS_CONTACT);
+            }
+            if (isDiagnosisCovid) {
+                dateEndIsolationNew = dateContact.addDays(ISOLATION_DAYS_COVID);
+            }
+        }
+    
+        if (dateEndIsolationNew != null) {
+            sickLeave.put(FIELD_APINAME_END_ISOLATION, dateEndIsolationNew);
+        }
+    }
+
+    private static void handleCovidPositive(Sick_leave__c sickLeave, Date testDate, String testApiNameField) {
+        Boolean isDateTestUpdated = setDateSickLeave(sickLeave, testDate, testApiNameField);
+
+        Boolean isDiagnosisCovid = isDiagnosisCovid(sickLeave);
+        Boolean isDiagnosisContactBefore = isDiagnosisContact(sickLeave);
+
+        Boolean isDiagnosisUpdated = addDiagnosisCovid(sickLeave);
+        
+        isDiagnosisContactBefore = isDiagnosisContactBefore && isDiagnosisCovid(sickLeave);
+        isDiagnosisCovid = !isDiagnosisCovid && isDiagnosisCovid(sickLeave);
+
+        Boolean isDateEndIsolationUpdated = setEndIsolationDayCovid(
+            sickLeave, testApiNameField, isDiagnosisCovid, isDiagnosisContactBefore);
+
+        if (isDateTestUpdated || isDiagnosisUpdated || isDateEndIsolationUpdated) {
+            update sickLeave;
+        }
+    }
+
+    private static Boolean addDiagnosisCovid(Sick_leave__c sickLeave) {
         Boolean result = true;
         String oldDiagnosis = sickLeave.Diagnosis__c;
         
@@ -92,7 +123,7 @@ public with sharing class SickLeaveUtils {
 
     private static Sick_leave__c getSickLeaveRecord(Id idSickLeave) {
         List<Sick_leave__c> sickLeaves = 
-            [SELECT Id, Date_Smear__c, Date_Express_Test__c, Diagnosis__c 
+            [SELECT Id, Date_Smear__c, Date_Express_Test__c, Diagnosis__c, End_Isolation__c, Date_Contact__c
             FROM Sick_leave__c 
             WHERE Id = :idSickLeave];
 
@@ -101,5 +132,55 @@ public with sharing class SickLeaveUtils {
         }
         
         return sickLeaves.get(0);
+    }
+
+    private static Boolean setEndIsolationDayCovid(Sick_leave__c sickLeave, String dateApiName, 
+            Boolean isDiagnosisChangedToCovid, Boolean isDiagnosisChangedToCovidFromContact){
+
+        Boolean result = false;
+        Date dateBeginIsolation = Date.valueOf(sickLeave.get(dateApiName));
+        Date dateEndIsolation = Date.valueOf(sickLeave.get(FIELD_APINAME_END_ISOLATION));
+        Date dateContact = sickLeave.Date_Contact__c;
+
+        Date dateEndIsolationNew;
+        if (dateContact != null) {
+            dateEndIsolationNew = dateContact.addDays(ISOLATION_DAYS_COVID);
+        } else if (dateBeginIsolation != null) {
+            dateEndIsolationNew = dateBeginIsolation.addDays(ISOLATION_DAYS_COVID);
+        }
+
+        if (dateEndIsolationNew != null) {
+            if (dateEndIsolation == null 
+                || (isDiagnosisChangedToCovid)
+                || (isDiagnosisCovid(sickLeave) && dateEndIsolationNew < dateEndIsolation)) {
+
+                sickLeave.put(FIELD_APINAME_END_ISOLATION, dateEndIsolationNew);
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    private static Boolean isDiagnosisCovid(Sick_leave__c sickLeave){
+        Boolean result = false;
+        String diagnosis = sickLeave.Diagnosis__c;
+        
+        if (String.isNotEmpty(diagnosis)) {
+            result = diagnosis.equals(DIAGNOSIS_COVID) || diagnosis.equals(DIAGNOSIS_COVID_PNEUMONIA);
+        }
+
+        return result;
+    }
+
+    private static Boolean isDiagnosisContact(Sick_leave__c sickLeave){
+        Boolean result = false;
+        String diagnosis = sickLeave.Diagnosis__c;
+        
+        if (String.isNotEmpty(diagnosis)) {
+            result = diagnosis.contains(DIAGNOSIS_CONTACT);
+        }
+
+        return result;
     }
 }

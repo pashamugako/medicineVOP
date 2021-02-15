@@ -51,12 +51,12 @@
                         </div>
 
                         <div class="slds-m-around_x-small button-class">
-                            <lightning:button type="submit" label="Отчет по Covid+" variant="brand"
+                            <lightning:button type="submit" label="Отчет по Ковид+" variant="brand"
                                 onclick="{! c.createCovid }" />
                         </div>
 
                         <div class="slds-m-around_x-small button-class">
-                            <lightning:button type="submit" label="Отчет по контактам" variant="brand"
+                            <lightning:button type="submit" label="Отчет по Контактам" variant="brand"
                                 onclick="{! c.createContact }" />
                         </div>
                     </div>

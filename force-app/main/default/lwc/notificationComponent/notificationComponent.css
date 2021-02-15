@@ -1,0 +1,8 @@
+.datatable {
+    max-height: 65vh;
+    overflow: auto;
+}
+
+.update-button {
+    float: right;
+}
