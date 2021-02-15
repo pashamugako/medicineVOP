@@ -4,7 +4,7 @@
     <fields>Name</fields>
     <fields>Datetime_CT__c</fields>
     <fields>Pneumonia__c</fields>
-    <fields>Is_Request_Ready__c</fields>
+    <fields>Is_Ready_Notice_Date_CT_Scan__c</fields>
     <fields>Sick_leave__c</fields>
     <label>CT Compact Layouts</label>
 </CompactLayout>

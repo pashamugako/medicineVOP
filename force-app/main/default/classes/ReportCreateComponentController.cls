@@ -23,10 +23,7 @@ public with sharing class ReportCreateComponentController {
                         .setDateLetter(sickLeave.Date_Letter__c)
                         .setLetterText(sickLeave.Letter_Text__c)
                         .setEmergencyNotification(sickLeave.Emergency_Notification__c)
-                        .setPatient(new BuilderPatient(
-                            (String) sickLeave.getSObject('Patient__r').get('Second_Name__c'), 
-                            (String) sickLeave.getSObject('Patient__r').get('First_Name__c'), 
-                            (String) sickLeave.getSObject('Patient__r').get('Patronymic__c')))
+                        .setPatient(new BuilderPatient(sickLeave))
                         .setDateExamination(examinationDate);
                     
                     covidBuilderList.add(covid);
@@ -63,10 +60,7 @@ public with sharing class ReportCreateComponentController {
                 if (contactDate == null || examinationDate >= contactDate) {
                     CovidBuilder covid = new CovidBuilder()
                         .setName((String) sickLeave.getSObject('Patient__r').get('Name'))
-                        .setPatient(new BuilderPatient(
-                            (String) sickLeave.getSObject('Patient__r').get('Second_Name__c'), 
-                            (String) sickLeave.getSObject('Patient__r').get('First_Name__c'), 
-                            (String) sickLeave.getSObject('Patient__r').get('Patronymic__c')))
+                        .setPatient(new BuilderPatient(sickLeave))
                         .setDateExamination(examinationDate);
                     
                     covidBuilderList.add(covid);
@@ -224,7 +218,7 @@ public with sharing class ReportCreateComponentController {
         
         public String buildCovid(){
             //to do - null for all
-            String result = this.patient.build();
+            String result = this.patient.buildNameInitials();
             result += ' а/к' + this.name + ' (';
 
             List<String> testAnalysisList = new List<String>();
@@ -235,7 +229,7 @@ public with sharing class ReportCreateComponentController {
                 testAnalysisList.add(this.expressTest.build());
             }
             if (String.isNotEmpty(this.emergencyNotification)) {
-                testAnalysisList.add('экстр. изв. №' + this.emergencyNotification);
+                testAnalysisList.add('экстр. изв. от ' + this.emergencyNotification);
             }
             if (String.isNotEmpty(this.letterText) || this.dateLetter != null) {
                 String letter = 'письмо МЗЦГиЭ';
@@ -249,16 +243,16 @@ public with sharing class ReportCreateComponentController {
             }
             result += String.join(testAnalysisList, ', ');
 
-            result += ') - ' + this.dateExamination.format();
+            result += ') - дата осмотра: ' + this.dateExamination.format();
 
             return result;
         }
         
         public String buildContact(){
             //to do - null for all
-            String result = this.patient.build();
+            String result = this.patient.buildNameInitials();
             result += ' а/к' + this.name;
-            result += ' - ' + this.dateExamination.format();
+            result += ' - дата осмотра: ' + this.dateExamination.format();
 
             return result;
         }
@@ -274,32 +268,6 @@ public with sharing class ReportCreateComponentController {
                 result = 0;   
             }
             
-            return result;
-        }
-    }
-
-    private class BuilderPatient {
-        private String secondName;
-        private String firstName;
-        private String patronymic;
-
-        public BuilderPatient(String secondName, String firstName, String patronymic){
-            this.secondName = secondName;
-            this.firstName = firstName;
-            this.patronymic = patronymic;
-        }
-
-        public String build(){
-            String result = '';
-            String resultTemplate = '{0} {1}.{2}.';
-
-            if (String.isNotEmpty(this.secondName) && String.isNotEmpty(this.firstName) && String.isNotEmpty(this.patronymic)) {
-                List<String> templateList = new List<String>{
-                    this.secondName, this.firstName.left(1), this.patronymic.left(1)
-                };
-                result = String.format(resultTemplate, templateList);
-            }
-
             return result;
         }
     }

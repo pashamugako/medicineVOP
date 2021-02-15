@@ -18,10 +18,10 @@
             MESSAGE_SUCCESS: 'success',
             MESSAGE_ERROR: 'error',
             MESSAGE_NOT_POPULATED: 'Проверьте поля для месяца и года и повторите попытку!',
-            MESSAGE_ERROR_COVID: 'Ошибка обработки отчета для covid+!',
-            MESSAGE_ERROR_CONTACT: 'Ошибка обработки отчета для контактов!',
+            MESSAGE_ERROR_COVID: 'Ошибка обработки отчета для Ковид+!',
+            MESSAGE_ERROR_CONTACT: 'Ошибка обработки отчета для Контактов!',
             HEADER_RESULT_COVID: 'Результат отчета по Ковид+:',
-            HEADER_RESULT_CONTACT: 'Результат отчета по контактам:'
+            HEADER_RESULT_CONTACT: 'Результат отчета по Контактам:'
         }
     },
 

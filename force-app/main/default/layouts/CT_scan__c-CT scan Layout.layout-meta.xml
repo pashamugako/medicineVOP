@@ -17,7 +17,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Is_Request_Ready__c</field>
+                <field>Is_Ready_Notice_Date_CT_Scan__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -26,7 +26,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Sick_leave__c</field>
             </layoutItems>
             <layoutItems>
@@ -69,7 +69,7 @@
         <fields>Name</fields>
         <fields>Datetime_CT__c</fields>
         <fields>Pneumonia__c</fields>
-        <fields>Is_Request_Ready__c</fields>
+        <fields>Is_Ready_Notice_Date_CT_Scan__c</fields>
         <fields>Sick_leave__c</fields>
     </miniLayout>
     <platformActionList>
@@ -119,7 +119,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000000kVv5</masterLabel>
+        <masterLabel>00h6D000001RzF2</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

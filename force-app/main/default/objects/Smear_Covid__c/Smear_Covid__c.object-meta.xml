@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Мазок</label>
     <nameField>
         <displayFormat>SC-{000000}</displayFormat>
@@ -166,6 +166,6 @@
         <searchResultsAdditionalFields>Number_Smear__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Sick_leave__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

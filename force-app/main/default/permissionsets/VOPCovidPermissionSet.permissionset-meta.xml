@@ -20,17 +20,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CT_scan__c.Is_Request_Ready__c</field>
+        <field>CT_scan__c.Is_Ready_Notice_Date_CT_Scan__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CT_scan__c.Pneumonia__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CT_scan__c.Sick_leave__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -50,11 +45,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Examination__c.Sick_leave__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Examination__c.TypeExamination__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -70,7 +60,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Express_Test__c.Is_Count_Date__c</field>
+        <field>Express_Test__c.Is_Ready_Notice_Date_Express_Test__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -86,11 +76,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Express_Test__c.Result__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Express_Test__c.Sick_leave__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -185,17 +170,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Sick_leave__c.Patient__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Sick_leave__c.Start_Sick_Leave__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Sick_leave__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Sick_leave__c.Is_Ready_Notice_VKK__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Sick_leave__c.Is_Ready_Notice_Isolation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -210,7 +200,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Smear_Covid__c.Is_Count_Date__c</field>
+        <field>Smear_Covid__c.Is_Ready_Notice_Date_Smear__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -226,11 +216,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Smear_Covid__c.Result__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Smear_Covid__c.Sick_leave__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

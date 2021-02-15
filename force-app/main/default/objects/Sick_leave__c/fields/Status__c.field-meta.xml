@@ -11,12 +11,12 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Активен</fullName>
-                <default>false</default>
+                <fullName>Active</fullName>
+                <default>true</default>
                 <label>Активен</label>
             </value>
             <value>
-                <fullName>Закрыт</fullName>
+                <fullName>Closed</fullName>
                 <default>false</default>
                 <label>Закрыт</label>
             </value>
